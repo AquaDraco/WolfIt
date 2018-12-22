@@ -20,8 +20,6 @@
       
       <div>
         <canvas id="wolfit-canvas" width="1000" height="600"></canvas>
-        
-        <img id="wolf" src="https://pngimg.com/uploads/wolf/wolf_PNG355.png" width="700">
         <img id="wolfit-result">
       </div>
     </div>
@@ -32,13 +30,17 @@
       });
 
       function loadCanvas() {
+        drawCanvasImage("https://pngimg.com/uploads/wolf/wolf_PNG355.png", 0, 0);
+      };
+      
+      function drawCanvasImage(link, x, y) {
         var canvasContext = $("#wolfit-canvas")[0].getContext('2d');
         var image = new Image();
         image.onload = function() {
-          canvasContext.drawImage(image,0,0);
+          canvasContext.drawImage(image,x,y);
         };
-        image.src = "https://pngimg.com/uploads/wolf/wolf_PNG355.png";
-      };
+        image.src = link;
+      }
 
       function wolfit() {
         var suffix = $("#suffix").val();
@@ -57,7 +59,8 @@
               imgSize:"Medium"
               },
             success: function(result) {
-              $("#wolfit-result").attr("src", result.items[0].thumbnailLink);
+              x = result;
+              //drawCanvasImage(result.items[0].thumbnailLink, thumbnailWidth, 0);
             }
 
           });
