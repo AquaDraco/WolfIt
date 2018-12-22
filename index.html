@@ -19,6 +19,7 @@
       </div>
       
       <div>
+        <img id="wolf" src="http://pngimg.com/uploads/wolf/wolf_PNG355.png" width="700">
         <img id="wolfit-result">
       </div>
     </div>
@@ -44,7 +45,7 @@
             imgSize:"Medium"
             },
           success: function(result) {
-            $("#wolfit-result").attr("src", result.items[0].link);
+            $("#wolfit-result").attr("src", result.items[0].thumbnailLink);
           }
           
         });
