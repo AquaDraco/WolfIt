@@ -15,7 +15,7 @@ function wolfit() {
           q: suffix,
           searchType: "image"
         }
-      );
+      )
     });
   }
 }
