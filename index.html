@@ -19,38 +19,50 @@
       </div>
       
       <div>
+        <canvas id="wolfit-canvas" width="1000" height="600"></canvas>
+        
         <img id="wolf" src="https://pngimg.com/uploads/wolf/wolf_PNG355.png" width="700">
         <img id="wolfit-result">
       </div>
     </div>
     
     <script>
-    $(document).ready(function() {
-    });
+      $(document).ready(function() {
+        loadCanvas();
+      });
 
-    function wolfit() {
-      var suffix = $("#suffix").val();
+      function loadCanvas() {
+        var canvasContext = $("#wolfit-canvas")[0].getContext('2d');
+        var image = new Image();
+        image.onload = function() {
+          canvasContext.drawImage(image,0,0);
+        };
+        image.src = "https://pngimg.com/uploads/wolf/wolf_PNG355.png";
+      };
 
-      if((suffix != null) && (suffix != "")) {
-        $.ajax({
-          method: "GET",
-          url: "https://www.googleapis.com/customsearch/v1",
-          data:
-            {
-            key: "AIzaSyAPNdD37QRurD7oLMRYJbMxsKuersRpwUA",
-            cx: "012397244432696523068:-veiaxy5zx8",
-            q: suffix,
-            searchType: "image",
-            num: 1,
-            imgSize:"Medium"
-            },
-          success: function(result) {
-            $("#wolfit-result").attr("src", result.items[0].thumbnailLink);
-          }
-          
-        });
+      function wolfit() {
+        var suffix = $("#suffix").val();
+
+        if((suffix != null) && (suffix != "")) {
+          $.ajax({
+            method: "GET",
+            url: "https://www.googleapis.com/customsearch/v1",
+            data:
+              {
+              key: "AIzaSyAPNdD37QRurD7oLMRYJbMxsKuersRpwUA",
+              cx: "012397244432696523068:-veiaxy5zx8",
+              q: suffix,
+              searchType: "image",
+              num: 1,
+              imgSize:"Medium"
+              },
+            success: function(result) {
+              $("#wolfit-result").attr("src", result.items[0].thumbnailLink);
+            }
+
+          });
+        }
       }
-    }
 
     </script>
   </body>
