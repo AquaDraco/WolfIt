@@ -59,8 +59,11 @@
               imgSize:"Medium"
               },
             success: function(result) {
-              x = result;
-              //drawCanvasImage(result.items[0].image.thumbnailLink, thumbnailWidth, 0);
+              var link = x.items[0].image.thumbnailLink;
+              var xCoord = 440-(x.items[0].image.thumbnailWidth)/2;
+              var yCoord = 150-(x.items[0].image.thumbnailHeight)/2);
+              
+              drawCanvasImage(link, xCoord, yCoord);
             }
           });
         }
