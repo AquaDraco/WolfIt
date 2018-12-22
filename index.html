@@ -33,12 +33,21 @@
         drawCanvasImage("https://pngimg.com/uploads/wolf/wolf_PNG355.png", 0, 0);
       };
       
-      function drawCanvasImage(link, x, y) {
+      function drawCanvasImage(link, x, y, width, height) {
         var canvasContext = $("#wolfit-canvas")[0].getContext('2d');
         var image = new Image();
-        image.onload = function() {
-          canvasContext.drawImage(image,x,y);
-        };
+        
+        if (width != null && height != null) {
+          image.onload = function() {
+            canvasContext.drawImage(image, x, y, width, height);
+          };
+        }
+        else {
+          image.onload = function() {
+            canvasContext.drawImage(image, x, y);
+          };
+        }
+        
         image.src = link;
       }
 
@@ -60,10 +69,12 @@
               },
             success: function(result) {
               var link = x.items[0].image.thumbnailLink;
-              var xCoord = 440-(x.items[0].image.thumbnailWidth)/2;
-              var yCoord = 150-(x.items[0].image.thumbnailHeight)/2);
+              var xCoord = 40
+              var yCoord = 180
+              var width = 180;
+              var height = 200;
               
-              drawCanvasImage(link, xCoord, yCoord);
+              drawCanvasImage(link, xCoord, yCoord, width, height);
             }
           });
         }
